@@ -1,22 +1,21 @@
-import Data.Database;
+import Data.ArrayListDatabase;
 import Element.Person;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DatabaseManagerTest {
 
     @Test
     void addNewPerson() {
-        Person A = new Person("Warszawa","Michał Kwaśniewski","951124444");
-        Person B = new Person("Poznań","Michał Komisarek","95112002451");
-        Database database=new Database();
-        database.getListOfPeople().add(A);
-        database.getListOfPeople().add(B);
-        System.out.println(database.getListOfPeople());
-        assertEquals(new String("[Person{name='Michał Kwaśniewski', pesel='951124444', city='Warszawa'}\n" +
-                ", Person{name='Michał Komisarek', pesel='95112002451', city='Poznań'}\n" +
-                "]"),database.getListOfPeople().toString());
+        Person A = new Person("Poznań", "Michał Kwaśniewski", "951124444");
+        Person B = new Person("Poznań", "Michał Komisarek", "95112002451");
+        ArrayListDatabase database = new ArrayListDatabase();
+        database.addPerson(A);
+        database.addPerson(B);
+        assertEquals(new String("Person{name='Michał Kwaśniewski',"+
+                " pesel='951124444', city='Poznań'}\n"+
+                "Person{name='Michał Komisarek', "+
+                "pesel='95112002451', city='Poznań'}\n"),database.printDatabase());
     }
 }

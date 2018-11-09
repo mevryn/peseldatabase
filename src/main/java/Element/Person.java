@@ -1,17 +1,38 @@
 package Element;
 
-public class Person {
+import java.util.Comparator;
+
+public class Person implements Comparable<Person> {
+
     private String name;
     private String pesel;
     private String city;
 
+    public int compareTo(Person person){
+        return this.city.compareTo(person.getCity());
+    }
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Person) {
+            Person person = (Person) obj;
+            return person.pesel.equals(this.pesel);
+        }else{
+            return false;
+        }
+    }
+    @Override
+    public int hashCode(){
+        return pesel.hashCode();
+    }
     public String getCity() {
         return city;
+
     }
 
     public void setCity(String city) {
         this.city = city;
     }
+
     public String getName() {
         return name;
     }
@@ -40,6 +61,6 @@ public class Person {
                 "name='" + name + '\'' +
                 ", pesel='" + pesel + '\'' +
                 ", city='" + city + '\'' +
-                '}'+'\n';
+                '}' + '\n';
     }
 }

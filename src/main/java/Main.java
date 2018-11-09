@@ -1,4 +1,4 @@
-import Data.ArrayListDatabase;
+import Data.SetDatabase;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        DatabaseManager databaseManager = new DatabaseManager(new ArrayListDatabase(), new Scanner(System.in));
+        DatabaseManager databaseManager = new DatabaseManager(new SetDatabase(), new Scanner(System.in));
         databaseManager.databaseRun();
     }
 }

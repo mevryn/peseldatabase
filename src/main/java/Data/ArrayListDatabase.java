@@ -2,17 +2,14 @@ package Data;
 
 import Element.Person;
 
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class ArrayListDatabase implements Database {
 
     private Set<Person> listOfPeople;
 
     public ArrayListDatabase() {
-        listOfPeople = new TreeSet<Person>();
+        listOfPeople = new HashSet<Person>();
     }
 
     @Override
@@ -30,31 +27,15 @@ public class ArrayListDatabase implements Database {
     }
 
     public void addPerson(Person person) {
-        if (checkIfExist(person)) {
-            setDuplicatedPersonPesel(person);
-        } else {
-            listOfPeople.add(person);
-        }
+        listOfPeople.remove(person);
+        listOfPeople.add(person);
     }
-
-    public void setDuplicatedPersonPesel(Person person) {
-        Iterator<Person> itr = listOfPeople.iterator();
-        while (itr.hasNext()) {
-            if (person.getPesel().equals(itr.next().getPesel())) {
-                itr.remove();
-                listOfPeople.add(person);
-            }
-        }
+    public ArrayList sortDatabaseByCity(){
+      List<Person> sorted = new ArrayList<>(listOfPeople);
+        sorted.sort(Comparator.comparing(Person::getCity));
+        return (ArrayList)sorted;
     }
-
-    public boolean checkIfExist(Person person) {
-        Iterator<Person> itr = listOfPeople.iterator();
-        while (itr.hasNext()) {
-            if (person.getPesel().equals(itr.next().getPesel())) {
-                return true;
-            }else
-                return false;
-        }
-        return false;
+    public int checkSize(){
+        return listOfPeople.size();
     }
 }

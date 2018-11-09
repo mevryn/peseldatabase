@@ -2,15 +2,11 @@ package Element;
 
 import java.util.Comparator;
 
-public class Person implements Comparable<Person> {
+public class Person {
 
     private String name;
     private String pesel;
     private String city;
-
-    public int compareTo(Person person){
-        return this.city.compareTo(person.getCity());
-    }
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Person) {
